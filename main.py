@@ -7,23 +7,30 @@ def main():
     print(f"this text has {num_words}")
     letter_dict = count_letters(text)
    # print(f"The count of letters is: {letter_dict}")
-    alpha_dict = clean_dict(letter_dict)
-    print("----here's the report of the book you asked-----")
-    print(f"-----this should be your book: {book_path}----")
-    print(f"---There is {num_words} in this book-----")
-    print(f"---------and here<s a run down of the letters too:--------")
-    for i in range(0,len(alpha_dict)):
-        print(alpha_dict[i])
-        for letter, count in alpha_dict[i].items():
-            
+    alpha_list = clean_dict(letter_dict)
+    alpha_list.sort(key=get_key, reverse=True)
+    final_print(book_path,num_words,alpha_list)
+
+
+def final_print(path, num, list):
+      print("----here's the report of the book you asked-----")
+      print(f"-----this should be your book: {path}----")
+      print(f"---There is {num} in this book-----")
+      print(f"---------and here<s a run down of the letters too:--------")
+      for i in range(0,len(list)):
+          for letter, count in list[i].items():
             print(f"there is {count} appearances of {letter} ")
+      print("------- good read!----------")
 
-
+def get_key(dict):
+    for letter in dict:
+        return dict[letter]
+    
 def clean_dict(dict):
     clean_dict = []
     for key in dict:
         if(str.isalpha(key)):
-            clean_dict.append({key:dict[key]})
+            clean_dict.append({key:dict[key]})     
     return clean_dict       
 
 def count_letters(text):
