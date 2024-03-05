@@ -8,7 +8,15 @@ def main():
     letter_dict = count_letters(text)
    # print(f"The count of letters is: {letter_dict}")
     alpha_dict = clean_dict(letter_dict)
-    print(alpha_dict)
+    print("----here's the report of the book you asked-----")
+    print(f"-----this should be your book: {book_path}----")
+    print(f"---There is {num_words} in this book-----")
+    print(f"---------and here<s a run down of the letters too:--------")
+    for i in range(0,len(alpha_dict)):
+        print(alpha_dict[i])
+        for letter, count in alpha_dict[i].items():
+            
+            print(f"there is {count} appearances of {letter} ")
 
 
 def clean_dict(dict):
